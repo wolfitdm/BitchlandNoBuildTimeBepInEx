@@ -146,7 +146,6 @@ namespace BitchlandNoBuildTimeBepInEx
             }
             catch (Exception ex)
             {
-				Logger.LogError(ex.ToString());
             }
 
             return true;
