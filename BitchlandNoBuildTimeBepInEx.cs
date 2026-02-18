@@ -123,30 +123,71 @@ namespace BitchlandNoBuildTimeBepInEx
 
             WeaponSystem _this = (WeaponSystem)__instance;
 
-			try
+            try
             {
                 RaycastHit hitInfo;
                 if (Physics.Raycast(_this.transform.position, _this.transform.TransformDirection(Vector3.forward), out hitInfo, _this.RayDistance, (int)_this.PromptLayers))
                 {
-                    int_ConstructionPlan obj = hitInfo.transform.GetComponent<int_ConstructionPlan>();
-                    int_ConstructionPlan obj2 = hitInfo.transform.root.GetComponent<int_ConstructionPlan>();
+                    Interactible[] obj__ = hitInfo.transform.GetComponents<Interactible>();
+                    Interactible[] obj2__ = hitInfo.transform.root.GetComponents<Interactible>();
 
-                    if (obj != null)
+                    if (obj__ != null)
                     {
-                        obj.AllResourcesIn = true;
-                        obj.BuiltProgress = obj.BuiltProgresspointsNeeded;
+                        for (int i = 0; i < obj__.Length; i++)
+                        {
+                            Interactible obj_ = obj__[i];
+
+                            if (obj_ == null)
+                            {
+                                continue;
+                            }
+
+                            if (!(obj_ is int_ConstructionPlan))
+                            {
+                                continue;
+                            }
+
+                            int_ConstructionPlan obj = (int_ConstructionPlan)obj_;
+
+                            if (obj != null)
+                            {
+                                obj.AllResourcesIn = true;
+                                obj.BuiltProgress = obj.BuiltProgresspointsNeeded;
+                            }
+                        }
                     }
 
-                    if (obj2  != null)
+                    if (obj2__ != null)
                     {
-                        obj2.AllResourcesIn = true;
-                        obj2.BuiltProgress = obj2.BuiltProgresspointsNeeded;
+                        for (int i = 0; i < obj2__.Length; i++)
+                        {
+                            Interactible obj2_ = obj2__[i];
+
+                            if (obj2_ == null)
+                            {
+                                continue;
+                            }
+
+                            if (!(obj2_ is int_ConstructionPlan))
+                            {
+                                continue;
+                            }
+
+                            int_ConstructionPlan obj2 = (int_ConstructionPlan)obj2_;
+
+                            if (obj2 != null)
+                            {
+                                obj2.AllResourcesIn = true;
+                                obj2.BuiltProgress = obj2.BuiltProgresspointsNeeded;
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
             }
+
 
             return true;
         }
